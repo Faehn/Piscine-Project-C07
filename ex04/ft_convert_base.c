@@ -6,12 +6,11 @@
 /*   By: bsamzun <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 15:03:06 by bsamzun           #+#    #+#             */
-/*   Updated: 2020/08/20 17:35:51 by bsamzun          ###   ########.fr       */
+/*   Updated: 2020/08/24 20:50:12 by bsamzun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include <stdlib.h>
-char *ft_itoa_base(int nbr, char *base_to, int i);
+char *ft_itoa_base(long int nbr, char *base_to);
 
 int		ft_strlen(char *str)
 {
@@ -69,8 +68,8 @@ int		ft_check_base_error(char *base)
 int		ft_atoi_base(char *nbr, char *base_from)
 {
 	int i;
-	int sign;
-	int temp_int;
+	long int sign;
+	long int temp_int;
 
 	i = 0;
 	sign = 1;
@@ -93,16 +92,13 @@ int		ft_atoi_base(char *nbr, char *base_from)
 
 char	*ft_convert_base(char *nbr, char *base_from, char *base_to)
 {
-	int temp;
+	long int temp;
 	char *dest;
 
+	temp = ft_atoi_base(nbr, base_from);
 	if (ft_check_base_error(base_from) == 1 && ft_check_base_error(base_to) == 1)
 	{
-		temp = ft_atoi_base(nbr, base_from);
-		if (temp < 0)
-			dest = ft_itoa_base(temp, base_to, 0, -1);
-		else
-			dest = ft_itoa_base(temp, base_to, 0, 1);
+		dest = ft_itoa_base(temp, base_to);
 		return (dest);
 	}
 	return (NULL);
