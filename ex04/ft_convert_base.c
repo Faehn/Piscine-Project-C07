@@ -6,11 +6,13 @@
 /*   By: bsamzun <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 15:03:06 by bsamzun           #+#    #+#             */
-/*   Updated: 2020/08/24 20:50:12 by bsamzun          ###   ########.fr       */
+/*   Updated: 2020/08/25 16:50:12 by bsamzun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include <stdlib.h>
-char *ft_itoa_base(long int nbr, char *base_to);
+
+char	*ft_itoa_base(long int nbr, char *base_to);
 
 int		ft_strlen(char *str)
 {
@@ -67,36 +69,38 @@ int		ft_check_base_error(char *base)
 
 int		ft_atoi_base(char *nbr, char *base_from)
 {
-	int i;
+	long int i;
 	long int sign;
 	long int temp_int;
 
 	i = 0;
 	sign = 1;
 	temp_int = 0;
-		while ((nbr[i] >= 9 && nbr[i] <= 13) || nbr[i] == 32)
-			i++;
-		while (nbr[i] == '+' || nbr[i] == '-')
-		{
-			if (nbr[i] == '-')
-				sign *= -1;
-			i++;
-		}
-		while (ft_where_in_base(nbr[i], base_from) != -1)
-		{
-			temp_int = (temp_int * ft_strlen(base_from)) + ft_where_in_base(nbr[i], base_from);
-			i++;
-		}
-		return (temp_int * sign);
+	while ((nbr[i] >= 9 && nbr[i] <= 13) || nbr[i] == 32)
+		i++;
+	while (nbr[i] == '+' || nbr[i] == '-')
+	{
+		if (nbr[i] == '-')
+			sign *= -1;
+		i++;
+	}
+	while (ft_where_in_base(nbr[i], base_from) != -1)
+	{
+		temp_int *= ft_strlen(base_from);
+		temp_int += ft_where_in_base(nbr[i], base_from);
+		i++;
+	}
+	return (temp_int * sign);
 }
 
 char	*ft_convert_base(char *nbr, char *base_from, char *base_to)
 {
-	long int temp;
-	char *dest;
+	long int	temp;
+	char		*dest;
 
 	temp = ft_atoi_base(nbr, base_from);
-	if (ft_check_base_error(base_from) == 1 && ft_check_base_error(base_to) == 1)
+	if (ft_check_base_error(base_from) == 1 &&
+			ft_check_base_error(base_to) == 1)
 	{
 		dest = ft_itoa_base(temp, base_to);
 		return (dest);

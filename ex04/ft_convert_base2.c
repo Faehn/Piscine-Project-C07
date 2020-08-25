@@ -6,12 +6,13 @@
 /*   By: bsamzun <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 17:20:04 by bsamzun           #+#    #+#             */
-/*   Updated: 2020/08/24 20:49:28 by bsamzun          ###   ########.fr       */
+/*   Updated: 2020/08/25 16:52:00 by bsamzun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int     ft_strlen(char *str);
 #include <stdlib.h>
+
+int		ft_strlen(char *str);
 
 int		ft_nbrlen(long int nbr, int baselen)
 {
@@ -26,13 +27,13 @@ int		ft_nbrlen(long int nbr, int baselen)
 		nbr /= baselen;
 		len++;
 	}
-	return len;
+	return (len);
 }
 
 void	ft_char_by_char(char *dest, long int nbr, char *base_to, int i)
 {
 	long int baselen;
-	
+
 	baselen = ft_strlen(base_to);
 	if ((nbr / baselen) != 0)
 	{
@@ -43,7 +44,7 @@ void	ft_char_by_char(char *dest, long int nbr, char *base_to, int i)
 		dest[i] = base_to[nbr];
 }
 
-char 	*ft_itoa_base(long int nbr, char *base_to)
+char	*ft_itoa_base(long int nbr, char *base_to)
 {
 	char	*dest;
 	int		destlen;
